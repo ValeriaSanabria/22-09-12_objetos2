@@ -1,40 +1,38 @@
 class Alumno {
-
     private nombre: string;
     private apellido: string;
     private materia: string;
     private nota: number;
 
-    constructor(pNombre: string, pApellido: string, pMateria: string, pNota: number, ) {
+    constructor(pNombre: string, pApellido: string, pMateria: string, pNota: number,) {
         this.nombre = pNombre;
         this.apellido = pApellido;
         this.materia = pMateria;
         this.nota = pNota;
     }
 
-    getNombre(): string {
+    public getNombre(): string {
         return this.nombre;
     }
 
-    getApellido(): string {
+    public getApellido(): string {
         return this.apellido;
     }
 
-    getMateria(): string {
+    public getMateria(): string {
         return this.materia;
     }
 
-    getCondicion(): string {
+    public getCondicion(): string {
         if (this.nota >= 7) {
-            return "Aprobado"
+            return "Aprobado";
         } else {
-            return "Desaprobado"
+            return "Desaprobado";
         }
     }
 }
 
 class Profesor {
-
     private cargo: string;
     private nombre: string;
     private apellido: string;
@@ -47,68 +45,65 @@ class Profesor {
         this.listaAlumnos = pListaA;
     }
 
-    getCargo(): string {
+    public getCargo(): string {
         return this.cargo;
     }
 
-    getNombre(): string {
+    public getNombre(): string {
         return this.nombre;
     }
 
-    getApellido(): string {
+    public getApellido(): string {
         return this.apellido;
     }
 }
 
-class Escuela{
+class Escuela {
+    private nombreEsc: string;
+    private listaAlumnos: Alumno[];
+    private listaProfesores: Profesor[];
 
-private nombreEsc: string;
-private listaAlumnos: Alumno[];
-private listaProfesores: Profesor[];
+    constructor(pNombreEsc: string, pListaA: Alumno[], pListaP: Profesor[]) {
+        this.nombreEsc = pNombreEsc;
+        this.listaAlumnos = pListaA;
+        this.listaProfesores = pListaP;
+    }
 
-constructor(pNombreEsc: string, pListaA: Alumno[], pListaP: Profesor[]){
-    this.nombreEsc = pNombreEsc;
-    this.listaAlumnos = pListaA;
-    this.listaProfesores = pListaP;
-}
+    public getNombreEscuela(): string {
+        return this.nombreEsc;
+    }
 
-getNombreEscuela(): string{
-    return this.nombreEsc;
-}
+    public matricularAlumno(pListaA: Alumno[]): void {
+        this.listaAlumnos = (pListaA);
+        console.log("Alumno Matriculado");
+    }
 
-matricularAlumno(pListaA:Alumno): void {
-    this.listaAlumnos.push(pListaA);
-    console.log("Alumno Matriculado");
-}
+    public expulsarAlumno(pListaA: Alumno[]): void {
+        this.listaAlumnos = pListaA;
+        console.log("Alumno expulsado");
+    }
 
-expulsarAlumno(pListaA:Alumno): void {
-    this.listaAlumnos.push(pListaA);
-    console.log("Alumno expulsado");
-}
+    public contratarProfesor(pListaP: Profesor[]): void {
+        this.listaProfesores = pListaP;
+        console.log("Profesor contratado");
+    }
 
-contratarProfesor(pListaP:Profesor): void {
-    this.listaProfesores.push(pListaP);
-    console.log("Profesor contratado");
-}
-
-despedirProfesor(pListaP:Profesor): void {
-    this.listaProfesores.push(pListaP);
-    console.log("Profesor despedido");
-}
-
+    public despedirProfesor(pListaP: Profesor[]): void {
+        this.listaProfesores = pListaP;
+        console.log("Profesor despedido");
+    }
 }
 
 let primerAlumno = new Alumno("Juan", "Perez", "Matematica", 8);
 let segundoAlumno = new Alumno("Analia", "Delgado", "Ciencias sociales", 5);
 
-let listadoAlumnos:Alumno[] = [primerAlumno, segundoAlumno];
+let listadoAlumnos: Alumno[] = [primerAlumno, segundoAlumno];
 
 let profesorA = new Profesor("Matematica", "Julian", "Diaz", listadoAlumnos);
 let profesorB = new Profesor("Geografia", "Analia", "Gonzalez", listadoAlumnos);
 
-let listaProfesores:Profesor[] = [profesorA, profesorB];
+let listaProfesores: Profesor[] = [profesorA, profesorB];
 
 let condicionJuan = primerAlumno.getCondicion();
 
 console.log(condicionJuan);
-
